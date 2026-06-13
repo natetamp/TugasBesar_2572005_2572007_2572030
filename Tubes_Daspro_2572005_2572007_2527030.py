@@ -1,29 +1,18 @@
 # Nama File : Tubes_Daspro_2572005_2572007_2527030.py
 # Program Sistem Manajemen Laundry
 # Penulis : Vicki Ferdinand, Nathan E E Tampilang, Claresta Jesslyn Lokanata
-# Kamus Data
-# matriks_laundry : var list penyimpan data utama laundry (matriks of string/integer/float)
-# kebawah : var int penyimpan indeks baris pengulangan utama (integer)
-# list_member : var list penyimpan daftar nama pelanggan yang merupakan member (list of string)
 
-matriks_laundry = [None] * 1000
-for kebawah in range(0, 1000, 1):
-    matriks_laundry[kebawah] = [None] * 7
-
-# Data member awal
-list_member = ["Claresta", "Vicki", "Nathan", "Karina", "Felix"]
-
-# Kamus Lokal
-# username : var list penyimpan daftar nama pengguna yang valid (list of string)
-# password : var list penyimpan daftar kata sandi yang valid (list of integer)
-# auth : var boolean penanda status login berhasil atau tidak (boolean)
-# i : var int penyimpan indeks pengulangan untuk mengecek data login (integer)
+# Kamus Data Lokal
+# username : var list menyimpan daftar nama pengguna yang valid
+# password : var list menyimpan daftar kata sandi yang valid
+# auth : var boolean menyimpan status penanda login berhasil atau tidak
+# i : var int menyimpan indeks pengulangan untuk mengecek data login
 def login(user, pw):
     username = ["admin", "kasir", "owner"]
     password = [123, 321, 111]
     auth = False
     
-    for i in range(0, 3, 1):
+    for i in range(0, len(username), 1):
         if user == username[i] and pw == password[i]:
             user = username[i]
             auth = True
@@ -40,20 +29,19 @@ def login(user, pw):
         print("\nLogin Gagal! Username atau password salah.\n")
     return auth
 
-# Kamus Lokal
-# lanjut_menu : var boolean penanda kelangsungan pengulangan menu admin (boolean)
-# A : var list penyimpan teks pilihan menu admin (list of string)
-# i : var int penyimpan indeks pengulangan untuk mencetak menu (integer)
-# choice_input : var string penyimpan input mentah dari pengguna (string)
-# choice : var int penyimpan pilihan menu yang sudah diubah ke angka (integer)
+# Kamus Data Lokal
+# lanjut_menu : var boolean menyimpan penanda kelangsungan pengulangan menu admin
+# A : var list menyimpan teks pilihan menu admin
+# i : var int menyimpan indeks pengulangan untuk mencetak menu
+# choice_input : var string menyimpan input mentah dari pengguna
+# choice : var int menyimpan pilihan menu yang sudah diubah ke angka
 def menu_admin():
     lanjut_menu = True
     while lanjut_menu == True:
         print("Welcome, admin!")
         print("            ===MENU===            ")
-        # Ditambahkan pilihan Registrasi Member Baru
         A = ["Update Status", "Hapus Data", "Lihat Semua Data", "Registrasi Member Baru", "Logout"]
-        for i in range(0, 5, 1):
+        for i in range(0, len(A), 1):
             print(f"{i+1}. {A[i]}")
             
         choice_input = input("Pilih menu (1-5): ")
@@ -73,19 +61,19 @@ def menu_admin():
             print("Menu tidak tersedia")
     return choice
 
-# Kamus Lokal
-# lanjut_menu : var boolean penanda kelangsungan pengulangan menu kasir (boolean)
-# A : var list penyimpan teks pilihan menu kasir (list of string)
-# i : var int penyimpan indeks pengulangan untuk mencetak menu (integer)
-# choice_input : var string penyimpan input mentah dari pengguna (string)
-# choice : var int penyimpan pilihan menu yang sudah diubah ke angka (integer)
+# Kamus Data Lokal
+# lanjut_menu : var boolean menyimpan penanda kelangsungan pengulangan menu kasir
+# A : var list menyimpan teks pilihan menu kasir
+# i : var int menyimpan indeks pengulangan untuk mencetak menu
+# choice_input : var string menyimpan input mentah dari pengguna
+# choice : var int menyimpan pilihan menu yang sudah diubah ke angka
 def menu_kasir():
     lanjut_menu = True
     while lanjut_menu == True:
         print("Welcome, kasir!")
         print("            ===MENU===            ")
         A = ["Tambah Data Laundry", "Lihat Data Laundry", "Cetak Struk", "Logout"]
-        for i in range(0, 4, 1):
+        for i in range(0, len(A), 1):
             print(f"{i+1}. {A[i]}")
             
         choice_input = input("Pilih menu (1-4): ")
@@ -103,19 +91,19 @@ def menu_kasir():
             print("Menu tidak tersedia")
     return choice
 
-# Kamus Lokal
-# lanjut_menu : var boolean penanda kelangsungan pengulangan menu owner (boolean)
-# A : var list penyimpan teks pilihan menu owner (list of string)
-# i : var int penyimpan indeks pengulangan untuk mencetak menu (integer)
-# choice_input : var string penyimpan input mentah dari pengguna (string)
-# choice : var int penyimpan pilihan menu yang sudah diubah ke angka (integer)
+# Kamus Data Lokal
+# lanjut_menu : var boolean menyimpan penanda kelangsungan pengulangan menu owner
+# A : var list menyimpan teks pilihan menu owner
+# i : var int menyimpan indeks pengulangan untuk mencetak menu
+# choice_input : var string menyimpan input mentah dari pengguna
+# choice : var int menyimpan pilihan menu yang sudah diubah ke angka
 def menu_owner():
     print("Welcome, owner!")
     lanjut_menu = True
     while lanjut_menu == True:
         print("            ===MENU===            ")
         A = ["Total Pendapatan", "Jumlah Transaksi", "Cucian Belum Selesai", "Logout"]
-        for i in range(0, 4, 1):
+        for i in range(0, len(A), 1):
             print(f"{i+1}. {A[i]}")
             
         choice_input = input("Pilih menu (1-4): ")
@@ -133,10 +121,10 @@ def menu_owner():
             print("Menu tidak tersedia")
     return choice
 
-# Kamus Lokal
-# tarif : var int penyimpan harga dasar per kilogram (integer)
-# total_sementara : var float penyimpan perhitungan harga sebelum diskon (float)
-# potongan : var float penyimpan nilai diskon (float)
+# Kamus Data Lokal
+# tarif : var int menyimpan harga dasar per kilogram
+# total_sementara : var float menyimpan perhitungan harga sebelum diskon
+# potongan : var float menyimpan nilai diskon
 def hitung_harga(berat, layanan, member):
     if layanan == "Reguler":
         tarif = 5000
@@ -151,19 +139,19 @@ def hitung_harga(berat, layanan, member):
         
     return total_sementara
 
-# Kamus Lokal
-# data_ada : var boolean penanda apakah ada data di dalam matriks (boolean)
-# kebawah : var int penyimpan indeks baris saat pencarian data (integer)
-# no_input : var string penyimpan input nomor data yang ingin diubah (string)
-# no : var int penyimpan nomor indeks target pembaruan (integer)
-# pilih_input : var string penyimpan input pilihan status baru (string)
-# pilih : var int penyimpan pilihan status yang sudah diubah ke angka (integer)
+# Kamus Data Lokal
+# data_ada : var boolean menyimpan penanda apakah ada data di dalam matriks
+# kebawah : var int menyimpan indeks baris saat pencarian data
+# no_input : var string menyimpan input nomor data yang ingin diubah
+# no : var int menyimpan nomor indeks target pembaruan
+# pilih_input : var string menyimpan input pilihan status baru
+# pilih : var int menyimpan pilihan status yang sudah diubah ke angka
 def stat_update():
     global matriks_laundry
     
     data_ada = False
     kebawah = 0
-    while kebawah < 1000 and data_ada == False:
+    while kebawah < len(matriks_laundry) and data_ada == False:
         if matriks_laundry[kebawah][0] != None:
             data_ada = True
         kebawah = kebawah + 1
@@ -172,14 +160,14 @@ def stat_update():
         print("Belum ada data laundry.")
     else:
         print("\n===Update Status Laundry===")
-        for kebawah in range(0, 1000, 1):
+        for kebawah in range(0, len(matriks_laundry), 1):
             if matriks_laundry[kebawah][0] != None:
                 print(f"No.{kebawah+1} | Inv: {matriks_laundry[kebawah][5]} | Nama: {matriks_laundry[kebawah][0]} | Status: {matriks_laundry[kebawah][4]}")
                 
         no_input = input("\nMasukkan nomor urut data (No) yang ingin diupdate: ")
         no = int(no_input) - 1
         
-        if no >= 0 and no < 1000 and matriks_laundry[no][0] != None:
+        if no >= 0 and no < len(matriks_laundry) and matriks_laundry[no][0] != None:
             print("Pilih status baru:")
             print("1. Proses")
             print("2. Selesai")
@@ -201,19 +189,19 @@ def stat_update():
         else:
             print("Data tidak ditemukan atau nomor urut salah.")
 
-# Kamus Lokal
-# data_ada : var boolean penanda apakah ada data di dalam matriks (boolean)
-# kebawah : var int penyimpan indeks baris saat pencarian data (integer)
-# kesamping : var int penyimpan indeks kolom saat proses penghapusan (integer)
-# no_input : var string penyimpan input nomor data yang ingin dihapus (string)
-# no : var int penyimpan nomor indeks target penghapusan (integer)
-# konfirmasi : var string penyimpan jawaban persetujuan menghapus data (string)
+# Kamus Data Lokal
+# data_ada : var boolean menyimpan penanda apakah ada data di dalam matriks
+# kebawah : var int menyimpan indeks baris saat pencarian data
+# kesamping : var int menyimpan indeks kolom saat proses penghapusan
+# no_input : var string menyimpan input nomor data yang ingin dihapus
+# no : var int menyimpan nomor indeks target penghapusan
+# konfirmasi : var string menyimpan jawaban persetujuan menghapus data
 def hapus_data():
     global matriks_laundry
     
     data_ada = False
     kebawah = 0
-    while kebawah < 1000 and data_ada == False:
+    while kebawah < len(matriks_laundry) and data_ada == False:
         if matriks_laundry[kebawah][0] != None:
             data_ada = True
         kebawah = kebawah + 1
@@ -222,14 +210,14 @@ def hapus_data():
         print("Belum ada data laundry.")
     else:
         print("\n===Hapus Data Laundry===")
-        for kebawah in range(0, 1000, 1):
+        for kebawah in range(0, len(matriks_laundry), 1):
             if matriks_laundry[kebawah][0] != None:
                 print(f"No.{kebawah+1} | Inv: {matriks_laundry[kebawah][5]} | Nama: {matriks_laundry[kebawah][0]} | Status: {matriks_laundry[kebawah][4]}")
 
         no_input = input("\nMasukkan nomor urut data yang ingin dihapus: ")
         no = int(no_input) - 1
 
-        if no >= 0 and no < 1000 and matriks_laundry[no][0] != None:
+        if no >= 0 and no < len(matriks_laundry) and matriks_laundry[no][0] != None:
             konfirmasi = input("Yakin ingin menghapus data? (y/n): ")
             if konfirmasi == 'y' or konfirmasi == 'Y':
                 for kesamping in range(0, 7, 1):
@@ -240,15 +228,15 @@ def hapus_data():
         else:
             print("Data tidak ditemukan atau nomor urut salah.")
 
-# Kamus Lokal
-# data_ada : var boolean penanda apakah ada data di dalam matriks (boolean)
-# kebawah : var int penyimpan indeks baris pengulangan (integer)
+# Kamus Data Lokal
+# data_ada : var boolean menyimpan penanda apakah ada data di dalam matriks
+# kebawah : var int menyimpan indeks baris pengulangan
 def lihat_data(role):
     global matriks_laundry
 
     data_ada = False
     kebawah = 0
-    while kebawah < 1000 and data_ada == False:
+    while kebawah < len(matriks_laundry) and data_ada == False:
         if matriks_laundry[kebawah][0] != None:
             data_ada = True
         kebawah = kebawah + 1
@@ -257,7 +245,7 @@ def lihat_data(role):
         print("Belum ada data laundry.")
     else:
         print("\n===Data Laundry===")
-        for kebawah in range(0, 1000, 1):
+        for kebawah in range(0, len(matriks_laundry), 1):
             if matriks_laundry[kebawah][0] != None:
                 if role == "admin":
                     print(f"No.{kebawah+1} | Inv: {matriks_laundry[kebawah][5]} | Nama: {matriks_laundry[kebawah][0]} | Berat: {matriks_laundry[kebawah][1]}kg | Layanan: {matriks_laundry[kebawah][2]} | Harga: Rp{matriks_laundry[kebawah][3]} | Status: {matriks_laundry[kebawah][4]}")
@@ -265,41 +253,59 @@ def lihat_data(role):
                     print(f"No.{kebawah+1} | Inv: {matriks_laundry[kebawah][5]} | Nama: {matriks_laundry[kebawah][0]} | Berat: {matriks_laundry[kebawah][1]}kg | Layanan: {matriks_laundry[kebawah][2]} | Harga: Rp{matriks_laundry[kebawah][3]}")
         print()
 
-# Kamus Lokal
-# member_baru : var string penyimpan input nama member baru yang didaftarkan (string)
+# Kamus Data Lokal
+# member_baru : var string menyimpan input nama member baru yang didaftarkan
+# i : var int menyimpan indeks array saat pencarian
+# sudah_ada : var boolean menyimpan penanda apakah nama sudah terdaftar sebelumnya
+# indeks_kosong : var int menyimpan indeks array list_member yang masih bernilai None
 def tambah_member():
     global list_member
     print("\n===Registrasi Member Baru===")
     member_baru = input("Masukkan nama member baru: ")
     
-    # Cek jika member sudah terdaftar sebelumnya (case-insensitive aman jika disamakan)
-    if member_baru in list_member:
+    sudah_ada = False
+    indeks_kosong = -1
+    
+    i = 0
+    while i < len(list_member):
+        if list_member[i] == member_baru:
+            sudah_ada = True
+        if list_member[i] == None and indeks_kosong == -1:
+            indeks_kosong = i
+        i = i + 1
+        
+    if sudah_ada == True:
         print("Nama tersebut sudah terdaftar sebagai member.")
     else:
-        list_member.append(member_baru)
-        print(f"Berhasil! {member_baru} sekarang resmi menjadi member Indigo Laundry.")
+        if indeks_kosong != -1:
+            list_member[indeks_kosong] = member_baru
+            print(f"Berhasil! {member_baru} sekarang resmi menjadi member Indigo Laundry.")
+        else:
+            print("Mohon maaf, kapasitas database member sudah penuh.")
     print()
 
-# Kamus Lokal
-# idx : var int penyimpan indeks array yang masih kosong (integer)
-# ketemu_kosong : var boolean penanda apakah sudah menemukan tempat kosong (boolean)
-# kebawah : var int penyimpan indeks baris pengulangan (integer)
-# nomor : var int penyimpan nomor invoice otomatis (integer)
-# nama_input : var string penyimpan nama pelanggan (string)
-# berat_input : var string penyimpan input mentah berat cucian (string)
-# nilai_berat : var float penyimpan berat cucian dalam bentuk desimal (float)
-# input_layanan_valid : var boolean penanda input layanan benar (boolean)
-# pilih_input : var string penyimpan input mentah pilihan layanan (string)
-# pilih : var int penyimpan pilihan layanan yang sudah diubah ke angka (integer)
-# layanan_pilih : var string penyimpan nama layanan hasil pilihan (string)
-# member : var int penanda status member otomatis, 1 jika ya dan 0 jika tidak (integer)
+# Kamus Data Lokal
+# idx : var int menyimpan indeks array yang masih kosong
+# ketemu_kosong : var boolean menyimpan penanda apakah sudah menemukan tempat kosong
+# kebawah : var int menyimpan indeks baris pengulangan
+# nomor : var int menyimpan nomor invoice otomatis
+# nama_input : var string menyimpan nama pelanggan
+# berat_input : var string menyimpan input mentah berat cucian
+# nilai_berat : var float menyimpan berat cucian dalam bentuk desimal
+# input_layanan_valid : var boolean menyimpan penanda input layanan benar
+# pilih_input : var string menyimpan input mentah pilihan layanan
+# pilih : var int menyimpan pilihan layanan yang sudah diubah ke angka
+# layanan_pilih : var string menyimpan nama layanan hasil pilihan
+# i : var int menyimpan indeks pencarian list member
+# cek_member : var boolean menyimpan penanda jika input nama ditemukan di dalam list member
+# member : var int menyimpan penanda status member otomatis, 1 jika ya dan 0 jika tidak
 def tambah_data():
     global matriks_laundry, list_member
     
     idx = -1
     ketemu_kosong = False
     kebawah = 0
-    while kebawah < 1000 and ketemu_kosong == False:
+    while kebawah < len(matriks_laundry) and ketemu_kosong == False:
         if matriks_laundry[kebawah][0] == None:
             idx = kebawah
             ketemu_kosong = True
@@ -309,7 +315,7 @@ def tambah_data():
         print("Data penuh, tidak bisa menambah data baru.")
     else:
         nomor = 1
-        for kebawah in range(0, 1000, 1):
+        for kebawah in range(0, len(matriks_laundry), 1):
             if matriks_laundry[kebawah][5] != None:
                 nomor = matriks_laundry[kebawah][5] + 1
 
@@ -335,8 +341,14 @@ def tambah_data():
         else:
             layanan_pilih = "Express"
             
-        # Pengecekan otomatis status member berdasarkan nama
-        if nama_input in list_member:
+        cek_member = False
+        i = 0
+        while i < len(list_member) and cek_member == False:
+            if list_member[i] == nama_input:
+                cek_member = True
+            i = i + 1
+
+        if cek_member == True:
             member = 1
             print(f"Sistem mendeteksi: {nama_input} adalah Member. Diskon 10% otomatis diterapkan!")
         else:
@@ -353,12 +365,12 @@ def tambah_data():
 
         print("Data berhasil dimasukkan")
 
-# Kamus Lokal
-# no_inv_input : var string penyimpan input mentah nomor invoice (string)
-# no_inv : var int penyimpan nomor invoice yang dicari (integer)
-# idx : var int penyimpan indeks array jika invoice ditemukan (integer)
-# ketemu_invoice : var boolean penanda apakah invoice cocok (boolean)
-# kebawah : var int penyimpan indeks baris pencarian (integer)
+# Kamus Data Lokal
+# no_inv_input : var string menyimpan input mentah nomor invoice
+# no_inv : var int menyimpan nomor invoice yang dicari
+# idx : var int menyimpan indeks array jika invoice ditemukan
+# ketemu_invoice : var boolean menyimpan penanda apakah invoice cocok
+# kebawah : var int menyimpan indeks baris pencarian
 def cetak_struk():
     global matriks_laundry
 
@@ -369,7 +381,7 @@ def cetak_struk():
     idx = -1
     ketemu_invoice = False
     kebawah = 0
-    while kebawah < 1000 and ketemu_invoice == False:
+    while kebawah < len(matriks_laundry) and ketemu_invoice == False:
         if matriks_laundry[kebawah][5] == no_inv:
             idx = kebawah
             ketemu_invoice = True
@@ -394,14 +406,14 @@ def cetak_struk():
         print("========================================")
         print()
 
-# Kamus Lokal
-# total : var float penyimpan total akumulasi seluruh pendapatan (float)
-# kebawah : var int penyimpan indeks baris pengulangan (integer)
+# Kamus Data Lokal
+# total : var float menyimpan total akumulasi seluruh pendapatan
+# kebawah : var int menyimpan indeks baris pengulangan
 def pendapatan():
     global matriks_laundry
 
     total = 0
-    for kebawah in range(0, 1000, 1):
+    for kebawah in range(0, len(matriks_laundry), 1):
         if matriks_laundry[kebawah][3] != None:
             total = total + matriks_laundry[kebawah][3]
 
@@ -409,14 +421,14 @@ def pendapatan():
     print(f"Total Pendapatan: Rp {total}")
     print()
 
-# Kamus Lokal
-# jumlah : var int penyimpan angka total pesanan yang masuk (integer)
-# kebawah : var int penyimpan indeks baris pengulangan (integer)
+# Kamus Data Lokal
+# jumlah : var int menyimpan angka total pesanan yang masuk
+# kebawah : var int menyimpan indeks baris pengulangan
 def jumlah_transaksi():
     global matriks_laundry
 
     jumlah = 0
-    for kebawah in range(0, 1000, 1):
+    for kebawah in range(0, len(matriks_laundry), 1):
         if matriks_laundry[kebawah][0] != None:
             jumlah = jumlah + 1
 
@@ -424,15 +436,15 @@ def jumlah_transaksi():
     print(f"Total Transaksi: {jumlah} transaksi")
     print()
 
-# Kamus Lokal
-# data_ada : var boolean penanda ada tidaknya cucian yang berstatus selain Diambil (boolean)
-# kebawah : var int penyimpan indeks baris pengulangan (integer)
+# Kamus Data Lokal
+# data_ada : var boolean menyimpan penanda ada tidaknya cucian yang berstatus selain Diambil
+# kebawah : var int menyimpan indeks baris pengulangan
 def cucian_belum_selesai():
     global matriks_laundry
     
     print("\n===Cucian Belum Selesai===")
     data_ada = False
-    for kebawah in range(0, 1000, 1):
+    for kebawah in range(0, len(matriks_laundry), 1):
         if matriks_laundry[kebawah][0] != None:
             if matriks_laundry[kebawah][4] == "Proses":
                 data_ada = True
@@ -442,12 +454,12 @@ def cucian_belum_selesai():
         print("Mantap! Semua cucian sudah selesai dan diambil.")
     print()
 
-# Kamus Lokal
-# no_inv_input : var string penyimpan input mentah invoice pelanggan (string)
-# no_inv : var int penyimpan nomor invoice pelanggan yang dicari (integer)
-# idx : var int penyimpan letak baris matriks dari pelanggan terkait (integer)
-# ketemu_invoice : var boolean penanda apakah invoice ditemukan di sistem (boolean)
-# kebawah : var int penyimpan indeks baris pencarian (integer)
+# Kamus Data Lokal
+# no_inv_input : var string menyimpan input mentah invoice pelanggan
+# no_inv : var int menyimpan nomor invoice pelanggan yang dicari
+# idx : var int menyimpan letak baris matriks dari pelanggan terkait
+# ketemu_invoice : var boolean menyimpan penanda apakah invoice ditemukan di sistem
+# kebawah : var int menyimpan indeks baris pencarian
 def lacak_pelanggan():
     global matriks_laundry
     
@@ -458,7 +470,7 @@ def lacak_pelanggan():
     idx = -1
     ketemu_invoice = False
     kebawah = 0
-    while kebawah < 1000 and ketemu_invoice == False:
+    while kebawah < len(matriks_laundry) and ketemu_invoice == False:
         if matriks_laundry[kebawah][5] == no_inv:
             idx = kebawah
             ketemu_invoice = True
@@ -470,12 +482,12 @@ def lacak_pelanggan():
         print(f"\nHalo {matriks_laundry[idx][0]}, status cucian Anda saat ini: [{matriks_laundry[idx][4]}]")
     print()
 
-# Kamus Lokal
-# program_jalan : var boolean penentu program utama terus berputar atau berhenti (boolean)
-# pilih : var string penyimpan input pilihan menu login/lacak/keluar (string)
-# username : var string penyimpan input nama pengguna dari pegawai (string)
-# password_input : var string penyimpan input mentah sandi pegawai (string)
-# password : var int penyimpan angka kata sandi pegawai (integer)
+# Kamus Data Lokal
+# program_jalan : var boolean menyimpan penentu program utama terus berputar atau berhenti
+# pilih : var string menyimpan input pilihan menu login/lacak/keluar
+# username : var string menyimpan input nama pengguna dari pegawai
+# password_input : var string menyimpan input mentah sandi pegawai
+# password : var int menyimpan angka kata sandi pegawai
 def main():
     program_jalan = True
     while program_jalan == True:
@@ -501,4 +513,15 @@ def main():
             print("Pilihan salah.")
 
 if __name__ == '__main__':
+    # Kamus Data Global
+    # NMAX : var int menyimpan ukuran maksimum array
+    # matriks_laundry : var list menyimpan data utama laundry (array 2 dimensi)
+    # kebawah : var int menyimpan indeks baris pengulangan utama
+    # list_member : var list menyimpan daftar nama pelanggan yang merupakan member
+    
+    NMAX = 1000
+    matriks_laundry = [None] * NMAX
+    for kebawah in range(0, NMAX, 1):
+        matriks_laundry[kebawah] = [None] * 7
+    list_member = [None] * NMAX
     main()
