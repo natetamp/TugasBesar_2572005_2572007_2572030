@@ -4,10 +4,14 @@
 # Kamus Data
 # matriks_laundry : var list penyimpan data utama laundry (matriks of string/integer/float)
 # kebawah : var int penyimpan indeks baris pengulangan utama (integer)
+# list_member : var list penyimpan daftar nama pelanggan yang merupakan member (list of string)
 
 matriks_laundry = [None] * 1000
 for kebawah in range(0, 1000, 1):
     matriks_laundry[kebawah] = [None] * 7
+
+# Data member awal
+list_member = ["Claresta", "Vicki", "Nathan", "Karina", "Felix"]
 
 # Kamus Lokal
 # username : var list penyimpan daftar nama pengguna yang valid (list of string)
@@ -47,11 +51,12 @@ def menu_admin():
     while lanjut_menu == True:
         print("Welcome, admin!")
         print("            ===MENU===            ")
-        A = ["Update Status", "Hapus Data", "Lihat Semua Data", "Logout"]
-        for i in range(0, 4, 1):
+        # Ditambahkan pilihan Registrasi Member Baru
+        A = ["Update Status", "Hapus Data", "Lihat Semua Data", "Registrasi Member Baru", "Logout"]
+        for i in range(0, 5, 1):
             print(f"{i+1}. {A[i]}")
             
-        choice_input = input("Pilih menu (1-4): ")
+        choice_input = input("Pilih menu (1-5): ")
         choice = int(choice_input)
         
         if choice == 1:
@@ -61,6 +66,8 @@ def menu_admin():
         elif choice == 3:
             lihat_data("admin")
         elif choice == 4:
+            tambah_member()
+        elif choice == 5:
             lanjut_menu = False
         else:
             print("Menu tidak tersedia")
@@ -259,6 +266,21 @@ def lihat_data(role):
         print()
 
 # Kamus Lokal
+# member_baru : var string penyimpan input nama member baru yang didaftarkan (string)
+def tambah_member():
+    global list_member
+    print("\n===Registrasi Member Baru===")
+    member_baru = input("Masukkan nama member baru: ")
+    
+    # Cek jika member sudah terdaftar sebelumnya (case-insensitive aman jika disamakan)
+    if member_baru in list_member:
+        print("Nama tersebut sudah terdaftar sebagai member.")
+    else:
+        list_member.append(member_baru)
+        print(f"Berhasil! {member_baru} sekarang resmi menjadi member Indigo Laundry.")
+    print()
+
+# Kamus Lokal
 # idx : var int penyimpan indeks array yang masih kosong (integer)
 # ketemu_kosong : var boolean penanda apakah sudah menemukan tempat kosong (boolean)
 # kebawah : var int penyimpan indeks baris pengulangan (integer)
@@ -270,11 +292,9 @@ def lihat_data(role):
 # pilih_input : var string penyimpan input mentah pilihan layanan (string)
 # pilih : var int penyimpan pilihan layanan yang sudah diubah ke angka (integer)
 # layanan_pilih : var string penyimpan nama layanan hasil pilihan (string)
-# input_member_valid : var boolean penanda input member benar (boolean)
-# member_input : var string penyimpan input mentah status member (string)
-# member : var int penyimpan status member yang diubah ke angka (integer)
+# member : var int penanda status member otomatis, 1 jika ya dan 0 jika tidak (integer)
 def tambah_data():
-    global matriks_laundry
+    global matriks_laundry, list_member
     
     idx = -1
     ketemu_kosong = False
@@ -315,18 +335,13 @@ def tambah_data():
         else:
             layanan_pilih = "Express"
             
-        print("Apakah pelanggan punya Member? (Diskon 10%)")
-        print("1. Ya\n2. Tidak")
-        
-        input_member_valid = False
-        while input_member_valid == False:
-            member_input = input("Pilih (1/2): ")
-            if member_input == "1" or member_input == "2":
-                input_member_valid = True
-            else:
-                print("Pilihan salah, coba lagi.")
-                
-        member = int(member_input)
+        # Pengecekan otomatis status member berdasarkan nama
+        if nama_input in list_member:
+            member = 1
+            print(f"Sistem mendeteksi: {nama_input} adalah Member. Diskon 10% otomatis diterapkan!")
+        else:
+            member = 0
+            print(f"Sistem mendeteksi: {nama_input} bukan Member.")
 
         matriks_laundry[idx][0] = nama_input
         matriks_laundry[idx][1] = nilai_berat
@@ -334,10 +349,7 @@ def tambah_data():
         matriks_laundry[idx][3] = hitung_harga(nilai_berat, layanan_pilih, member)
         matriks_laundry[idx][4] = "Proses"
         matriks_laundry[idx][5] = nomor
-        if member == 1:
-            matriks_laundry[idx][6] = 1
-        else:
-            matriks_laundry[idx][6] = 0
+        matriks_laundry[idx][6] = member
 
         print("Data berhasil dimasukkan")
 
@@ -422,7 +434,7 @@ def cucian_belum_selesai():
     data_ada = False
     for kebawah in range(0, 1000, 1):
         if matriks_laundry[kebawah][0] != None:
-            if matriks_laundry[kebawah][4] != "Diambil":
+            if matriks_laundry[kebawah][4] == "Proses":
                 data_ada = True
                 print(f"Inv: {matriks_laundry[kebawah][5]} | Nama: {matriks_laundry[kebawah][0]} | Status: {matriks_laundry[kebawah][4]}")
     
