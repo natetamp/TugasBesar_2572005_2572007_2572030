@@ -486,7 +486,7 @@ def main():
             print("Sampai jumpa!")
             program_jalan = False
         else:
-            print("Pilihan salah.")
+            print("Pilihan invalid.")
 
 if __name__ == '__main__':
     main()
